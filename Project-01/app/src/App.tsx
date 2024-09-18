@@ -6,7 +6,7 @@ function App() {
     return (
         <>
             <h1>WhatFont Am I?</h1>
-            <FontAwesomeIcon icon={faLocationPin} />
+            <FontAwesomeIcon className='text-red-500' icon={faLocationPin} />
             <FontAwesomeIcon icon={faStar} color='#1c1cfe' />
             <FontAwesomeIcon icon={faStarHalfStroke} color='orange' />
         </>
