@@ -3,6 +3,7 @@ import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
 import { QueryClient } from '@tanstack/react-query';
 import Header from '../components/header';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 export const Route = createRootRouteWithContext<{
     queryClient: QueryClient;
@@ -12,7 +13,9 @@ export const Route = createRootRouteWithContext<{
             <Header />
 
             <Outlet />
+            
             <TanStackRouterDevtools />
+            <ReactQueryDevtools />
         </>
     ),
 });
