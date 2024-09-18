@@ -11,8 +11,8 @@ export default function Nav() {
                     </Link>
                 </li>
                 <li>
-                    <Link className='hover:underline [&.active]:font-bold' to='/about'>
-                        About
+                    <Link className='hover:underline [&.active]:font-bold' to='/app'>
+                        App
                     </Link>
                 </li>
             </ul>
