@@ -1,14 +1,9 @@
-import { faStarHalfStroke } from '@fortawesome/free-regular-svg-icons/faStarHalfStroke';
-import { faLocationPin, faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Header from './components/header';
 
 function App() {
     return (
         <>
-            <h1>WhatFont Am I?</h1>
-            <FontAwesomeIcon className='text-red-500' icon={faLocationPin} />
-            <FontAwesomeIcon icon={faStar} color='#1c1cfe' />
-            <FontAwesomeIcon icon={faStarHalfStroke} color='orange' />
+            <Header />
         </>
     );
 }
