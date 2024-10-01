@@ -1,4 +1,4 @@
-# Title Pending
+# ShopCompare
 
 ## Thoughts behind the component directory structure
 

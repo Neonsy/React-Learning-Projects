@@ -4,7 +4,7 @@ import { VscGithub } from 'react-icons/vsc';
 
 export default function Nav() {
     return (
-        <nav className='w-full flex justify-between items-center'>
+        <nav className='container mx-auto flex justify-between items-center'>
             <Link className='flex items-center gap-x-3' to='/'>
                 <BiShoppingBag className='text-5xl mb-2 text-blue-500' />
                 <h1 className='text-3xl font-extrabold text-blue-500'>ShopCompare</h1>
