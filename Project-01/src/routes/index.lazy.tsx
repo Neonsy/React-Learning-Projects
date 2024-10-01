@@ -1,5 +1,5 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
-import { SiTailwindcss } from 'react-icons/si';
+import HomePage from '../components/homePage';
 
 export const Route = createLazyFileRoute('/')({
     component: Index,
@@ -8,8 +8,7 @@ export const Route = createLazyFileRoute('/')({
 function Index() {
     return (
         <>
-            <h2>Welcome Home!</h2>
-            <SiTailwindcss className='text-9xl text-sky-500' />
+            <HomePage />
         </>
     );
 }
