@@ -14,11 +14,11 @@ export const Route = createRootRouteWithContext<{
         <div id='app'>
             <Header />
 
-            <div id='route'>
+            {/* <div id='route'>
                 <Outlet />
-            </div>
+            </div> */}
 
-            <Footer />
+            {/* <Footer /> */}
 
             <TanStackRouterDevtools />
             <ReactQueryDevtools />
