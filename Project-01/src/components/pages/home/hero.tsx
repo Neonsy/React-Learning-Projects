@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import Container from '../container';
+import Container from '../../container';
 
 export default function Hero() {
     return (

@@ -7,7 +7,7 @@ import { CiDatabase } from 'react-icons/ci';
 import { LuAtom } from 'react-icons/lu';
 import { GiBearFace } from 'react-icons/gi';
 
-import Container from '../container';
+import Container from '../../container';
 
 export default function TechStackSection() {
     return (
