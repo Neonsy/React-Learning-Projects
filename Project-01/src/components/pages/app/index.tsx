@@ -5,13 +5,10 @@ import Container from '../../container';
 import ShopCard from '../../shopCard';
 import CompareBox from '../../compareBox';
 
-import { useShopStore } from '../../../stores/shopStore';
-
 import type { Shop } from '../../../types/shop';
 
 export default function AppPage() {
     const { data, isSuccess, isLoading, isError } = useQuery(getShops);
-    const { selectedShops, toggleShop } = useShopStore();
 
     return (
         <main className='h-full'>
@@ -28,18 +25,7 @@ export default function AppPage() {
                 {isError && <p>Error fetching data</p>}
 
                 <div id='shops' className='h-2/4 overflow-y-auto mt-9'>
-                    {isSuccess &&
-                        data.map((shop: Shop) => (
-                            <ShopCard
-                                key={shop.name}
-                                shop={shop}
-                                isSelected={selectedShops.some((s) => s.id === shop.id)}
-                                onToggle={() => toggleShop(shop)}
-                                disableCheckbox={
-                                    !selectedShops.some((s) => s.id === shop.id) && selectedShops.length >= 3
-                                }
-                            />
-                        ))}
+                    {isSuccess && data.map((shop: Shop) => <ShopCard key={shop.name} shop={shop} />)}
                 </div>
 
                 <CompareBox />
