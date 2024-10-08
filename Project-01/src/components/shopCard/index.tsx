@@ -1,13 +1,25 @@
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import type { Shop } from '../../types/shop';
-
 import Rating from './rating';
+
+import type { Shop } from '../../types/shop';
+import { useBoundStore } from '../../stores/store';
+import { useShallow } from 'zustand/shallow';
+import { useAtom } from 'jotai';
+import { popup } from '../../atoms/popupAtom';
 
 export type Props = {
     shop: Shop;
 };
 
 export default function ShopCard({ shop }: Props) {
+    const [, setShowPopup] = useAtom(popup);
+
+    const { setShopDetails } = useBoundStore(
+        useShallow((state) => ({
+            setShopDetails: state.setShopDetails,
+        }))
+    );
+
     return (
         <div className='bg-white mb-3 grid grid-cols-3 shadow-lg p-9'>
             <div className='flex gap-x-3 items-center'>
@@ -15,7 +27,12 @@ export default function ShopCard({ shop }: Props) {
                 <h3 className='font-bold'>{shop.name}</h3>
             </div>
             <Rating rating={shop.rating} />
-            <button className='flex justify-self-end items-center text-blue-500 hover:underline'>
+            <button
+                onClick={() => {
+                    setShopDetails(shop);
+                    setShowPopup(true);
+                }}
+                className='flex justify-self-end items-center text-blue-500 hover:underline'>
                 Show Details
                 <MdKeyboardArrowRight />
             </button>

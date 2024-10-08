@@ -10,6 +10,16 @@ const initialState: ShopDetailState = {
     website: '',
 };
 
-export const createShopDetailSlice: StateCreator<ShopDetailSlice, [], [], ShopDetailSlice> = () => ({
+export const createShopDetailSlice: StateCreator<ShopDetailSlice, [['zustand/immer', never]], [], ShopDetailSlice> = (set) => ({
     ...initialState,
+
+    setShopDetails: (shop) => {
+        set(() => ({
+            name: shop.name,
+            street: shop.street,
+            city: shop.city,
+            zip: shop.zip,
+            website: shop.website,
+        }));
+    },
 });

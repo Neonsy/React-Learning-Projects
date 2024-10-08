@@ -1,3 +1,5 @@
+import type { Shop } from '../shop';
+
 export type ShopDetailState = {
     name: string;
     street: string;
@@ -6,4 +8,8 @@ export type ShopDetailState = {
     website: string;
 };
 
-export type ShopDetailSlice = ShopDetailState;
+export type ShopDetailAction = {
+    setShopDetails: (details: Shop) => void;
+};
+
+export type ShopDetailSlice = ShopDetailState & ShopDetailAction;
