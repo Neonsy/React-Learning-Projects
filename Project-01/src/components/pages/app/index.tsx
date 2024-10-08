@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+
 import { getShops } from '../../../lib/queries/getShops';
 
 import Container from '../../container';
@@ -6,8 +8,11 @@ import ShopCard from '../../shopCard';
 import CompareBox from '../../compareBox';
 
 import type { Shop } from '../../../types/shop';
+import Popup from '../../popup';
 
 export default function AppPage() {
+    const [activePopup, setActivePopup] = useState(true);
+
     const { data, isSuccess, isLoading, isError } = useQuery(getShops);
 
     return (
@@ -27,6 +32,18 @@ export default function AppPage() {
                 <div id='shops' className='h-2/4 overflow-y-auto mt-9'>
                     {isSuccess && data.map((shop: Shop) => <ShopCard key={shop.name} shop={shop} />)}
                 </div>
+
+                <Popup active={activePopup} setActive={setActivePopup}>
+                    <h3>Shop Details</h3>
+                    <div className='my-3'>
+                        <p>Name</p>
+                        <p>Street</p>
+                        <p>City</p>
+                    </div>
+                    <a href='' className='text-blue-500 hover:underline'>
+                        Visit their Website
+                    </a>
+                </Popup>
 
                 <CompareBox />
             </Container>
