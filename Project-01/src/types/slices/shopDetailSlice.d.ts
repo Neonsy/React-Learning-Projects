@@ -1,11 +1,13 @@
 import type { Shop } from '../shop';
 
 export type ShopDetailState = {
-    name: string;
-    street: string;
-    city: string;
-    zip: string;
-    website: string;
+    shopDetails: {
+        name: string;
+        street: string;
+        city: string;
+        zip: string;
+        website: string;
+    };
 };
 
 export type ShopDetailAction = {

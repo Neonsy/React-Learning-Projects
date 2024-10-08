@@ -119,9 +119,9 @@
         },
         {
             "id": 14,
-            "name": "Green Street Grocery",
+            "name": "Greenville Grocery",
             "street": "14 Beech Street",
-            "city": "Green Street",
+            "city": "Greenville",
             "zip": "12121",
             "website": "https://fake-website-14.com",
             "rating": 5
@@ -191,9 +191,9 @@
         },
         {
             "id": 22,
-            "name": "Green Street Supermarket",
+            "name": "Greenville Supermarket",
             "street": "22 Elm Street",
-            "city": "Green Street",
+            "city": "Greenville",
             "zip": "20101",
             "website": "https://fake-website-22.com",
             "rating": 5
@@ -263,9 +263,9 @@
         },
         {
             "id": 30,
-            "name": "Green Street Market",
+            "name": "Greenville Market",
             "street": "30 Cypress Street",
-            "city": "Green Street",
+            "city": "Greenville",
             "zip": "28101",
             "website": "https://fake-website-30.com",
             "rating": 3

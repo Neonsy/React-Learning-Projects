@@ -1,10 +1,10 @@
 export type CompareState = {
     selectedShops: Shop[];
+    isComparing: boolean;
 };
 
 export type CompareAction = {
-    addShop: (shop: Shop) => void;
-    removeShop: (shop: Shop) => void;
+    toggleShop: (shop: Shop) => void;
 };
 
 export type CompareSlice = CompareState & CompareAction;

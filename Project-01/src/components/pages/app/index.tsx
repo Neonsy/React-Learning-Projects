@@ -4,6 +4,7 @@ import { getShops } from '../../../lib/queries/getShops';
 import CompareBox from '../../compareBox';
 import Container from '../../container';
 import ShopCard from '../../shopCard';
+import Button from '../../button';
 import Popup from '../../popup';
 
 import { LuExternalLink } from 'react-icons/lu';
@@ -18,11 +19,19 @@ export default function AppPage() {
 
     const { name, street, zip, city, website } = useBoundStore(
         useShallow((state) => ({
-            name: state.name,
-            street: state.street,
-            zip: state.zip,
-            city: state.city,
-            website: state.website,
+            name: state.shopDetails.name,
+            street: state.shopDetails.street,
+            zip: state.shopDetails.zip,
+            city: state.shopDetails.city,
+            website: state.shopDetails.website,
+        }))
+    );
+
+    const { isComparing, selectedShops, toggleShop } = useBoundStore(
+        useShallow((state) => ({
+            isComparing: state.isComparing,
+            selectedShops: state.selectedShops,
+            toggleShop: state.toggleShop,
         }))
     );
 
@@ -32,15 +41,25 @@ export default function AppPage() {
                 <section className='flex flex-col justify-center items-center gap-y-5'>
                     <h2 className='font-bold'>Compare Shops Instantly</h2>
                     <p className='text-slate-500'>Find the best shops for your needs.</p>
-                    <button className='bg-blue-500 text-white text-lg px-9 py-3 shadow-lg rounded-full active:scale-90'>Start Comparison</button>
+                    {!isComparing ? <Button type='start' /> : <Button disabled={selectedShops.length <= 1} type='compare' />}
                 </section>
 
                 {isLoading && <p>Loading data...</p>}
                 {isError && <p>Error fetching data</p>}
 
-                <div id='shops' className='h-2/4 overflow-y-auto mt-9'>
-                    {isSuccess && data.map((shop: Shop) => <ShopCard key={shop.name} shop={shop} />)}
-                </div>
+                <section id='shops' className='h-2/4 overflow-y-auto mt-9'>
+                    {isSuccess &&
+                        data.map((shop: Shop) => (
+                            <ShopCard
+                                key={shop.name}
+                                shop={shop}
+                                isComparing={isComparing}
+                                onToggle={() => toggleShop(shop)}
+                                isSelected={selectedShops.some((s) => s.id === shop.id)}
+                                disableCheckbox={!selectedShops.some((s) => s.id === shop.id) && selectedShops.length >= 3}
+                            />
+                        ))}
+                </section>
 
                 <Popup>
                     <h3>Shop Details</h3>
@@ -54,7 +73,7 @@ export default function AppPage() {
                     </a>
                 </Popup>
 
-                <CompareBox />
+                {isComparing && <CompareBox />}
             </Container>
         </main>
     );

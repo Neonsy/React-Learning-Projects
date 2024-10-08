@@ -10,7 +10,7 @@ export default function Hero() {
                 <Link
                     to='/app'
                     className='mt-5 bg-slate-950 text-white text-lg px-12 py-5 rounded-xl hover:transition-all hover:outline hover:outline-2 hover:outline-blue-500 active:transition-none active:scale-90'>
-                    Start Comparison
+                    Check out the App
                 </Link>
             </Container>
         </section>

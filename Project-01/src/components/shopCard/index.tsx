@@ -1,17 +1,21 @@
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import Rating from './rating';
 
-import type { Shop } from '../../types/shop';
-import { useBoundStore } from '../../stores/store';
-import { useShallow } from 'zustand/shallow';
 import { useAtom } from 'jotai';
+import { useShallow } from 'zustand/shallow';
 import { popup } from '../../atoms/popupAtom';
+import { useBoundStore } from '../../stores/store';
+import type { Shop } from '../../types/shop';
 
 export type Props = {
     shop: Shop;
+    isComparing: boolean;
+    onToggle: () => void;
+    isSelected: boolean;
+    disableCheckbox: boolean;
 };
 
-export default function ShopCard({ shop }: Props) {
+export default function ShopCard({ shop, isComparing, onToggle, isSelected, disableCheckbox }: Props) {
     const [, setShowPopup] = useAtom(popup);
 
     const { setShopDetails } = useBoundStore(
@@ -23,12 +27,20 @@ export default function ShopCard({ shop }: Props) {
     return (
         <div className='bg-white mb-3 grid grid-cols-3 shadow-lg p-9'>
             <div className='flex gap-x-3 items-center'>
-                <input type='checkbox' className='w-5 h-5' />
+                <input
+                    type='checkbox'
+                    className={`${!isComparing && 'invisible'} ${disableCheckbox && 'cursor-not-allowed'} w-5 h-5`}
+                    onChange={onToggle}
+                    checked={isSelected}
+                    disabled={disableCheckbox}
+                />
                 <h3 className='font-bold'>{shop.name}</h3>
             </div>
+
             <Rating rating={shop.rating} />
+
             <button
-                onClick={() => {
+                onMouseDown={() => {
                     setShopDetails(shop);
                     setShowPopup(true);
                 }}
