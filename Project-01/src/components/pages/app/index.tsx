@@ -1,19 +1,28 @@
-import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-
 import { getShops } from '../../../lib/queries/getShops';
 
+import CompareBox from '../../compareBox';
 import Container from '../../container';
 import ShopCard from '../../shopCard';
-import CompareBox from '../../compareBox';
-
-import type { Shop } from '../../../types/shop';
 import Popup from '../../popup';
 
-export default function AppPage() {
-    const [activePopup, setActivePopup] = useState(true);
+import { useBoundStore } from '../../../stores/store';
 
+import type { Shop } from '../../../types/shop';
+import { useShallow } from 'zustand/shallow';
+
+export default function AppPage() {
     const { data, isSuccess, isLoading, isError } = useQuery(getShops);
+
+    const { name, street, zip, city, website } = useBoundStore(
+        useShallow((state) => ({
+            name: state.name,
+            street: state.street,
+            zip: state.zip,
+            city: state.city,
+            website: state.website,
+        }))
+    );
 
     return (
         <main className='h-full'>
@@ -33,14 +42,17 @@ export default function AppPage() {
                     {isSuccess && data.map((shop: Shop) => <ShopCard key={shop.name} shop={shop} />)}
                 </div>
 
-                <Popup active={activePopup} setActive={setActivePopup}>
+                <Popup>
                     <h3>Shop Details</h3>
                     <div className='my-3'>
-                        <p>Name</p>
-                        <p>Street</p>
-                        <p>City</p>
+                        <p>{name}</p>
+                        <p>{street}</p>
+                        <p>
+                            {zip}
+                            {city}
+                        </p>
                     </div>
-                    <a href='' className='text-blue-500 hover:underline'>
+                    <a href={website} className='text-blue-500 hover:underline'>
                         Visit their Website
                     </a>
                 </Popup>

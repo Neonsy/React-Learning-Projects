@@ -1,7 +1,11 @@
 import { create } from 'zustand';
-import { Store } from '../types/store';
-import { createCompareSlice } from './compareSlice';
 
-export const boundStore = create<Store>()((...sg) => ({
+import { createCompareSlice } from './slices/compareSlice';
+import { createShopDetailSlice } from './slices/shopDetailSlice';
+
+import type { Store } from '../types/store';
+
+export const useBoundStore = create<Store>()((...sg) => ({
     ...createCompareSlice(...sg),
+    ...createShopDetailSlice(...sg),
 }));
