@@ -1,6 +1,7 @@
 import { StateCreator } from 'zustand';
 
 import type { ShopDetailSlice, ShopDetailState } from '../../types/slices/shopDetailSlice';
+import { CompareSlice } from '../../types/slices/compareSlice';
 
 const initialState: ShopDetailState = {
     name: '',
@@ -10,7 +11,7 @@ const initialState: ShopDetailState = {
     website: '',
 };
 
-export const createShopDetailSlice: StateCreator<ShopDetailSlice, [['zustand/immer', never]], [], ShopDetailSlice> = (set) => ({
+export const createShopDetailSlice: StateCreator<ShopDetailSlice & CompareSlice, [['zustand/immer', never]], [], ShopDetailSlice> = (set) => ({
     ...initialState,
 
     setShopDetails: (shop) => {
