@@ -2,6 +2,8 @@
 export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
+        // Custom font CSS set to InterVariable if supported
+        fontFamily: { sans: ['Inter', 'sans-serif'] },
         extend: {
             screens: {
                 sm: '640px',
