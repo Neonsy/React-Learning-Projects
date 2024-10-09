@@ -15,6 +15,10 @@ declare module '@tanstack/react-router' {
     }
 }
 
+// Apply global styles
+
+import './main.css';
+
 // Render the app
 const rootElement = document.getElementById('root')!;
 if (!rootElement.innerHTML) {
