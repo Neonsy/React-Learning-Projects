@@ -1,0 +1,274 @@
+{
+    "stores": [
+        {
+            "id": 1,
+            "name": "Brightstar Market",
+            "street": "1 Main Street",
+            "city": "Sunnyville",
+            "zip": "12345",
+            "website": "https://fake-website-1.com",
+            "rating": 4.5
+        },
+        {
+            "id": 2,
+            "name": "Greenleaf Grocery",
+            "street": "2 Oak Street",
+            "city": "Greenhaven",
+            "zip": "67890",
+            "website": "https://fake-website-2.com",
+            "rating": 3.5
+        },
+        {
+            "id": 3,
+            "name": "Freshmart Supermarket",
+            "street": "3 Maple Street",
+            "city": "Mapleville",
+            "zip": "34567",
+            "website": "https://fake-website-3.com",
+            "rating": 5
+        },
+        {
+            "id": 4,
+            "name": "Harvest Market",
+            "street": "4 Pine Street",
+            "city": "Pineview",
+            "zip": "90123",
+            "website": "https://fake-website-4.com",
+            "rating": 1.5
+        },
+        {
+            "id": 5,
+            "name": "Sunrise Grocery",
+            "street": "5 Cherry Street",
+            "city": "Sunnybrook",
+            "zip": "45678",
+            "website": "https://fake-website-5.com",
+            "rating": 4
+        },
+        {
+            "id": 6,
+            "name": "Greenspace Grocery",
+            "street": "6 Cedar Street",
+            "city": "Greenwood",
+            "zip": "23456",
+            "website": "https://fake-website-6.com",
+            "rating": 3
+        },
+        {
+            "id": 7,
+            "name": "Farmers Market",
+            "street": "7 Walnut Street",
+            "city": "Farmville",
+            "zip": "11111",
+            "website": "https://fake-website-7.com",
+            "rating": 2
+        },
+        {
+            "id": 8,
+            "name": "Nature's Choice Supermarket",
+            "street": "8 Cypress Street",
+            "city": "Nature's Crossing",
+            "zip": "55555",
+            "website": "https://fake-website-8.com",
+            "rating": 1
+        },
+        {
+            "id": 9,
+            "name": "Green Acres Grocery",
+            "street": "9 Birch Street",
+            "city": "Green Acres",
+            "zip": "66666",
+            "website": "https://fake-website-9.com",
+            "rating": 5
+        },
+        {
+            "id": 10,
+            "name": "Fresh Market",
+            "street": "10 Sycamore Street",
+            "city": "Freshbrook",
+            "zip": "77777",
+            "website": "https://fake-website-10.com",
+            "rating": 3.5
+        },
+        {
+            "id": 11,
+            "name": "Harvest Fresh Supermarket",
+            "street": "11 Elm Street",
+            "city": "Harvestville",
+            "zip": "88888",
+            "website": "https://fake-website-11.com",
+            "rating": 2.5
+        },
+        {
+            "id": 12,
+            "name": "Green Earth Market",
+            "street": "12 Poplar Street",
+            "city": "Green Earth",
+            "zip": "99999",
+            "website": "https://fake-website-12.com",
+            "rating": 1.5
+        },
+        {
+            "id": 13,
+            "name": "Sunrise Market",
+            "street": "13 Fir Street",
+            "city": "Sunrise Valley",
+            "zip": "10101",
+            "website": "https://fake-website-13.com",
+            "rating": 4
+        },
+        {
+            "id": 14,
+            "name": "Greenville Grocery",
+            "street": "14 Beech Street",
+            "city": "Greenville",
+            "zip": "12121",
+            "website": "https://fake-website-14.com",
+            "rating": 5
+        },
+        {
+            "id": 15,
+            "name": "Farmers Fresh Market",
+            "street": "15 Ash Street",
+            "city": "Farmersville",
+            "zip": "13131",
+            "website": "https://fake-website-15.com",
+            "rating": 2
+        },
+        {
+            "id": 16,
+            "name": "Nature's Harvest Supermarket",
+            "street": "16 Oak Street",
+            "city": "Nature's Harvest",
+            "zip": "14141",
+            "website": "https://fake-website-16.com",
+            "rating": 1
+        },
+        {
+            "id": 17,
+            "name": "Green Acres Supermarket",
+            "street": "17 Maple Street",
+            "city": "Green Acres",
+            "zip": "15151",
+            "website": "https://fake-website-17.com",
+            "rating": 4.5
+        },
+        {
+            "id": 18,
+            "name": "Freshbrook Market",
+            "street": "18 Cherry Street",
+            "city": "Freshbrook",
+            "zip": "16161",
+            "website": "https://fake-website-18.com",
+            "rating": 3.5
+        },
+        {
+            "id": 19,
+            "name": "Harvestville Grocery",
+            "street": "19 Walnut Street",
+            "city": "Harvestville",
+            "zip": "17171",
+            "website": "https://fake-website-19.com",
+            "rating": 2.5
+        },
+        {
+            "id": 20,
+            "name": "Green Earth Supermarket",
+            "street": "20 Cypress Street",
+            "city": "Green Earth",
+            "zip": "18181",
+            "website": "https://fake-website-20.com",
+            "rating": 1.5
+        },
+        {
+            "id": 21,
+            "name": "Sunrise Supermarket",
+            "street": "21 Sycamore Street",
+            "city": "Sunrise Valley",
+            "zip": "19191",
+            "website": "https://fake-website-21.com",
+            "rating": 4
+        },
+        {
+            "id": 22,
+            "name": "Greenville Supermarket",
+            "street": "22 Elm Street",
+            "city": "Greenville",
+            "zip": "20101",
+            "website": "https://fake-website-22.com",
+            "rating": 5
+        },
+        {
+            "id": 23,
+            "name": "Farmers Fresh Supermarket",
+            "street": "23 Fir Street",
+            "city": "Farmersville",
+            "zip": "21101",
+            "website": "https://fake-website-23.com",
+            "rating": 2
+        },
+        {
+            "id": 24,
+            "name": "Nature's Harvest Market",
+            "street": "24 Beech Street",
+            "city": "Nature's Harvest",
+            "zip": "22101",
+            "website": "https://fake-website-24.com",
+            "rating": 1
+        },
+        {
+            "id": 25,
+            "name": "Green Acres Market",
+            "street": "25 Ash Street",
+            "city": "Green Acres",
+            "zip": "23101",
+            "website": "https://fake-website-25.com",
+            "rating": 4.5
+        },
+        {
+            "id": 26,
+            "name": "Freshbrook Supermarket",
+            "street": "26 Oak Street",
+            "city": "Freshbrook",
+            "zip": "24101",
+            "website": "https://fake-website-26.com",
+            "rating": 3.5
+        },
+        {
+            "id": 27,
+            "name": "Harvestville Supermarket",
+            "street": "27 Maple Street",
+            "city": "Harvestville",
+            "zip": "25101",
+            "website": "https://fake-website-27.com",
+            "rating": 2.5
+        },
+        {
+            "id": 28,
+            "name": "Galaxy Supermarket",
+            "street": "28 Cherry Street",
+            "city": "Green Earth",
+            "zip": "26101",
+            "website": "https://fake-website-28.com",
+            "rating": 1.5
+        },
+        {
+            "id": 29,
+            "name": "Astroid Supermarket",
+            "street": "29 Walnut Street",
+            "city": "Sunrise Valley",
+            "zip": "27101",
+            "website": "https://fake-website-29.com",
+            "rating": 5
+        },
+        {
+            "id": 30,
+            "name": "Greenville Market",
+            "street": "30 Cypress Street",
+            "city": "Greenville",
+            "zip": "28101",
+            "website": "https://fake-website-30.com",
+            "rating": 3
+        }
+    ]
+}
