@@ -2,17 +2,19 @@ import { StateCreator } from 'zustand';
 
 import type { CompareSlice, CompareState } from '../../types/slices/compareSlice';
 import type { Shop } from '../../types/shop';
-import { ShopDetailSlice } from '../../types/slices/shopDetailSlice';
+import type { Store } from '../../types/store';
 
 const initialState: CompareState = {
     selectedShops: [],
     isComparing: false,
+    showResult: false,
 };
 
-export const createCompareSlice: StateCreator<CompareSlice & ShopDetailSlice, [['zustand/immer', never], ['zustand/devtools', never]], [], CompareSlice> = (set) => ({
+export const createCompareSlice: StateCreator<Store, [['zustand/immer', never], ['zustand/devtools', never]], [], CompareSlice> = (set) => ({
     ...initialState,
 
     toggleShop: (shop) => set(toggleShopLogic(shop), false, 'CompareSlice/ToggleShop'),
+    removeShop: (shop) => set(removeShopLogic(shop), false, 'CompareSlice/RemoveShop'),
 });
 
 const toggleShopLogic = (shop: Shop) => (state: CompareState) => {
@@ -23,4 +25,8 @@ const toggleShopLogic = (shop: Shop) => (state: CompareState) => {
     } else if (state.selectedShops.length < 3) {
         state.selectedShops.push(shop);
     }
+};
+
+const removeShopLogic = (shop: Shop) => (state: CompareState) => {
+    state.selectedShops = state.selectedShops.filter((s) => s.id !== shop.id);
 };

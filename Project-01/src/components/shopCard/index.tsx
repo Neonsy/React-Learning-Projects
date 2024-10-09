@@ -2,17 +2,19 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 import Rating from './rating';
 
 import { useAtom } from 'jotai';
-import { useShallow } from 'zustand/shallow';
 import { popup } from '../../atoms/popupAtom';
+
+import { useShallow } from 'zustand/shallow';
 import { useBoundStore } from '../../stores/store';
+
 import type { Shop } from '../../types/shop';
 
 export type Props = {
     shop: Shop;
-    isComparing: boolean;
-    onToggle: () => void;
-    isSelected: boolean;
-    disableCheckbox: boolean;
+    isComparing?: boolean;
+    onToggle?: () => void;
+    isSelected?: boolean;
+    disableCheckbox?: boolean;
 };
 
 export default function ShopCard({ shop, isComparing, onToggle, isSelected, disableCheckbox }: Props) {

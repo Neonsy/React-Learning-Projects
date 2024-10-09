@@ -1,18 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { getShops } from '../../../lib/queries/getShops';
 
+import Button from '../../button';
 import CompareBox from '../../compareBox';
 import Container from '../../container';
-import ShopCard from '../../shopCard';
-import Button from '../../button';
 import Popup from '../../popup';
+import ShopCard from '../../shopCard';
 
 import { LuExternalLink } from 'react-icons/lu';
 
-import { useBoundStore } from '../../../stores/store';
 import { useShallow } from 'zustand/shallow';
-
-import type { Shop } from '../../../types/shop';
+import { useBoundStore } from '../../../stores/store';
 
 export default function AppPage() {
     const { data, isSuccess, isLoading, isError } = useQuery(getShops);
@@ -27,11 +25,12 @@ export default function AppPage() {
         }))
     );
 
-    const { isComparing, selectedShops, toggleShop } = useBoundStore(
+    const { isComparing, selectedShops, toggleShop, showResult } = useBoundStore(
         useShallow((state) => ({
             isComparing: state.isComparing,
             selectedShops: state.selectedShops,
             toggleShop: state.toggleShop,
+            showResult: state.showResult,
         }))
     );
 
@@ -41,24 +40,41 @@ export default function AppPage() {
                 <section className='flex flex-col justify-center items-center gap-y-5'>
                     <h2 className='font-bold'>Compare Shops Instantly</h2>
                     <p className='text-slate-500'>Find the best shops for your needs.</p>
-                    {!isComparing ? <Button type='start' /> : <Button disabled={selectedShops.length <= 1} type='compare' />}
+                    {showResult ? (
+                        <Button type='back' />
+                    ) : !isComparing ? (
+                        <Button type='start' />
+                    ) : (
+                        <Button
+                            showResult={() => {
+                                if (selectedShops.length >= 2 && selectedShops.length <= 3) {
+                                    useBoundStore.setState({ showResult: true });
+                                    useBoundStore.setState({ isComparing: false });
+                                }
+                            }}
+                            disabled={selectedShops.length <= 1}
+                            type='compare'
+                        />
+                    )}
                 </section>
 
                 {isLoading && <p>Loading data...</p>}
                 {isError && <p>Error fetching data</p>}
 
                 <section id='shops' className='h-2/4 overflow-y-auto mt-9'>
-                    {isSuccess &&
-                        data.map((shop: Shop) => (
-                            <ShopCard
-                                key={shop.name}
-                                shop={shop}
-                                isComparing={isComparing}
-                                onToggle={() => toggleShop(shop)}
-                                isSelected={selectedShops.some((s) => s.id === shop.id)}
-                                disableCheckbox={!selectedShops.some((s) => s.id === shop.id) && selectedShops.length >= 3}
-                            />
-                        ))}
+                    {showResult
+                        ? [...selectedShops].sort((a, b) => b.rating - a.rating).map((shop) => <ShopCard key={shop.name} shop={shop} />)
+                        : isSuccess &&
+                          [...data].map((shop) => (
+                              <ShopCard
+                                  key={shop.name}
+                                  shop={shop}
+                                  isComparing={isComparing}
+                                  onToggle={() => toggleShop(shop)}
+                                  isSelected={selectedShops.some((s) => s.id === shop.id)}
+                                  disableCheckbox={!selectedShops.some((s) => s.id === shop.id) && selectedShops.length >= 3}
+                              />
+                          ))}
                 </section>
 
                 <Popup>
@@ -73,7 +89,7 @@ export default function AppPage() {
                     </a>
                 </Popup>
 
-                {isComparing && <CompareBox />}
+                {isComparing && <CompareBox selectedShops={selectedShops} />}
             </Container>
         </main>
     );
