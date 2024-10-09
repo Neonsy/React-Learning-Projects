@@ -9,7 +9,7 @@
 
 ## **Overview**
 
-Welcome to the third chapter of my journey into the React ecosystem! 🚀
+Welcome to the third chapter of my journey into the React ecosystem! 🚀 Click [here](#projects) to jump to the project list.
 
 In my [first repository](https://github.com/Neonsy/React-First-Steps), I dove into the basics of React, exploring it's vanilla form.
 Then, in the [second repository](https://github.com/Neonsy/NextJS-Server-Steps), I ventured into the world of Next.js, discovering it's powerful features.
@@ -44,3 +44,7 @@ Unlike my earlier **`React First Steps`**, I'll incorporate TypeScript to enhanc
 Since this project focuses on React, I'll use Vite instead of Next.js, allowing me to experiment with [TanStack/ReactRouter](https://github.com/TanStack/router).
 
 To simulate remote data interactions, I'll likely use JSON-Server and leverage [TanStack/ReactQuery](https://github.com/TanStack/query) for efficient data fetching.
+
+## **Projects**
+
+- [ShopCompare](https://github.com/Neonsy/React-Learning-State-Management/blob/Project-01/Project-01/README.md)
