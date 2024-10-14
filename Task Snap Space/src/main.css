@@ -3,3 +3,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        font-size: 1.2rem;
+    }
+
+    h1 {
+        @apply text-3xl;
+    }
+
+    h2 {
+        @apply text-2xl;
+    }
+
+    h3 {
+        @apply text-xl;
+    }
+
+    p {
+        @apply text-lg;
+    }
+}
+
+body {
+    @apply bg-gradient-to-r from-[#0B3F63] via-[#163F87] to-[#203FAB];
+}
+
+body,
+div#app-grid {
+    @apply min-h-dvh;
+}

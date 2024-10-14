@@ -16,9 +16,15 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const AppLazyImport = createFileRoute('/app')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const AppLazyRoute = AppLazyImport.update({
+  path: '/app',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/app.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -36,6 +42,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -43,32 +56,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/app': typeof AppLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/app': typeof AppLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/app': typeof AppLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/app'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/app'
+  id: '__root__' | '/' | '/app'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  AppLazyRoute: typeof AppLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  AppLazyRoute: AppLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -83,11 +101,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/app"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/app": {
+      "filePath": "app.lazy.tsx"
     }
   }
 }
