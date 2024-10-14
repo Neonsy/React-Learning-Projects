@@ -13,12 +13,12 @@ export default function Nav() {
 
             <ul className='flex gap-x-5 items-center'>
                 <li>
-                    <Link to='/' className='hover:underline' activeProps={{ className: 'text-[#08e2ff] font-medium' }}>
+                    <Link to='/' className='hover:underline' activeProps={{ className: 'text-[#14fff3] font-medium' }}>
                         Home
                     </Link>
                 </li>
                 <li>
-                    <Link to='/app' className='hover:underline' activeProps={{ className: 'text-[#08e2ff] font-medium' }}>
+                    <Link to='/app' className='hover:underline' activeProps={{ className: 'text-[#14fff3] font-medium' }}>
                         App
                     </Link>
                 </li>

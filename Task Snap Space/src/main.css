@@ -27,5 +27,10 @@
 }
 
 body {
-    @apply min-h-dvh bg-gradient-to-r from-[#0B3F63] via-[#163F87] to-[#203FAB];
+    @apply bg-gradient-to-r from-[#0B3F63] via-[#163F87] to-[#203FAB];
+}
+
+body,
+div#app-grid {
+    @apply min-h-dvh;
 }
