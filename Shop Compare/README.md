@@ -1,6 +1,6 @@
 # ShopCompare
 
-Welcome to **ShopCompare**, a personal learning project designed to explore and experiment with various technologies in the React ecosystem.
+Welcome to **ShopCompare**, the first personal learning project designed to explore and experiment with various technologies in the React ecosystem.
 This project leverages TypeScript, React, Vite, Tailwind CSS, TanStack Router, TanStack Query, Jotai, and Zustand to create a shopping comparison application.
 
 ## Project Overview
@@ -10,6 +10,10 @@ The goal is to integrate these technologies seamlessly with React to build an in
 
 > [!NOTE]
 > This is also my first React project and I am excited to continue learning TypeScript and React.
+
+### Idea
+
+This project is based of an exercise I was given, so I re-created it as best as I could remember it.
 
 ## Technologies Used
 
