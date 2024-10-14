@@ -25,7 +25,7 @@ export default function Nav() {
                     </li>
                     <li>
                         <a
-                            href='https://github.com/Neonsy/React-Learning-State-Management/tree/Project-01'
+                            href='https://github.com/Neonsy/React-Learning-State-Management/tree/Shop-Compare/Shop%20Compare'
                             target='_blank'
                             rel='noreferrer noopener'
                             className='flex items-center'>
