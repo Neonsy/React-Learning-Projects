@@ -3,7 +3,7 @@ import Nav from './nav';
 
 export default function Header() {
     return (
-        <header className='bg-slate-50/30 text-white'>
+        <header className='bg-slate-50/15 text-white'>
             <Container>
                 <Nav />
             </Container>

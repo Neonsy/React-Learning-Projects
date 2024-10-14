@@ -1,7 +1,7 @@
 export default function App() {
     return (
-        <div>
+        <main>
             <h1>App Page</h1>
-        </div>
+        </main>
     );
 }

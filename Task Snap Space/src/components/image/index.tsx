@@ -7,7 +7,7 @@ type Props = {
 export default function Image({ src, alt, className }: Props) {
     return (
         <>
-            <img src={src} alt={alt} className={`brightness-50 ${className}`} />
+            <img src={src} alt={alt} className={`w-full h-full object-cover ${className}`} />
         </>
     );
 }

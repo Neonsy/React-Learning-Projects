@@ -6,7 +6,7 @@ import Container from '../container';
 
 export default function Footer() {
     return (
-        <footer className='bg-slate-50/30 text-white py-3 px-1.5'>
+        <footer className='bg-slate-50/15 text-white py-3 px-1.5'>
             <Container>
                 <p className='flex items-center justify-center gap-x-1'>
                     <FaRegCopyright /> {getYear()} TaskSnapSpace by{' '}
