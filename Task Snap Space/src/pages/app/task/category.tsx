@@ -2,9 +2,11 @@ import { FiCheckSquare } from 'react-icons/fi';
 
 import TaskCard from './card';
 
+import type { TaskList } from '../../../types/taskList';
+
 type Props = {
     type: 'to-do' | 'in-progress' | 'completed';
-    taskList: string[];
+    taskList: TaskList[];
 };
 
 export default function TaskCategory({ taskList, type }: Props) {
@@ -23,8 +25,8 @@ export default function TaskCategory({ taskList, type }: Props) {
             </div>
 
             <div className='bg-slate-100 flex flex-col gap-y-2.5 pb-12'>
-                {taskList.map((text) => (
-                    <TaskCard key={text} text={text} />
+                {taskList.map((task) => (
+                    <TaskCard key={task.id} text={task.content} />
                 ))}
             </div>
         </div>
