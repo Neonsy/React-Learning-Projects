@@ -3,6 +3,7 @@ import { LuListTodo } from 'react-icons/lu';
 import { GiAbstract103 } from 'react-icons/gi';
 import { FiCheckSquare } from 'react-icons/fi';
 import { IoCloseOutline } from 'react-icons/io5';
+import { MdOutlineDragIndicator } from 'react-icons/md';
 
 export default function App() {
     return (
@@ -35,15 +36,18 @@ export default function App() {
                         <div className='bg-slate-100 flex flex-col gap-y-2.5 pb-12'>
                             <div className='shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3'>
                                 <IoCloseOutline className='w-7 h-7 cursor-pointer' />
-                                <p className='break-all'>Lorem ipsum dolor sit.</p>
+                                <p className='break-all flex-grow'>Lorem ipsum dolor sit.</p>
+                                <MdOutlineDragIndicator />
                             </div>
                             <div className='shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3'>
                                 <IoCloseOutline className='w-7 h-7 cursor-pointer' />
-                                <p className='break-all'>Lorem ipsum dolor sit.</p>
+                                <p className='break-all flex-grow'>Lorem ipsum dolor sit.</p>
+                                <MdOutlineDragIndicator />
                             </div>
                             <div className='shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3'>
                                 <IoCloseOutline className='w-7 h-7 cursor-pointer' />
-                                <p className='break-all'>Lorem ipsum dolor sit.</p>
+                                <p className='break-all flex-grow'>Lorem ipsum dolor sit.</p>
+                                <MdOutlineDragIndicator />
                             </div>
                         </div>
                     </div>
@@ -57,15 +61,18 @@ export default function App() {
                         <div className='bg-slate-100 flex flex-col gap-y-2.5 pb-12'>
                             <div className='shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3'>
                                 <IoCloseOutline className='w-7 h-7 cursor-pointer' />
-                                <p className='break-all'>Lorem ipsum dolor sit.</p>
+                                <p className='break-all flex-grow'>Lorem ipsum dolor sit.</p>
+                                <MdOutlineDragIndicator />
                             </div>
                             <div className='shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3'>
                                 <IoCloseOutline className='w-7 h-7 cursor-pointer' />
-                                <p className='break-all'>Lorem ipsum dolor sit.</p>
+                                <p className='break-all flex-grow'>Lorem ipsum dolor sit.</p>
+                                <MdOutlineDragIndicator />
                             </div>
                             <div className='shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3'>
                                 <IoCloseOutline className='w-7 h-7 cursor-pointer' />
-                                <p className='break-all'>Lorem ipsum dolor sit.</p>
+                                <p className='break-all flex-grow'>Lorem ipsum dolor sit.</p>
+                                <MdOutlineDragIndicator />
                             </div>
                         </div>
                     </div>
@@ -79,15 +86,18 @@ export default function App() {
                         <div className='bg-slate-100 flex flex-col gap-y-2.5 pb-12'>
                             <div className='shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3'>
                                 <IoCloseOutline className='w-7 h-7 cursor-pointer' />
-                                <p className='break-all'>Lorem ipsum dolor sit.</p>
+                                <p className='break-all flex-grow'>Lorem ipsum dolor sit.</p>
+                                <MdOutlineDragIndicator />
                             </div>
                             <div className='shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3'>
                                 <IoCloseOutline className='w-7 h-7 cursor-pointer' />
-                                <p className='break-all'>Lorem ipsum dolor sit.</p>
+                                <p className='break-all flex-grow'>Lorem ipsum dolor sit.</p>
+                                <MdOutlineDragIndicator />
                             </div>
                             <div className='shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3'>
                                 <IoCloseOutline className='w-7 h-7 cursor-pointer' />
-                                <p className='break-all'>Lorem ipsum dolor sit.</p>
+                                <p className='break-all flex-grow'>Lorem ipsum dolor sit.</p>
+                                <MdOutlineDragIndicator />
                             </div>
                         </div>
                     </div>
