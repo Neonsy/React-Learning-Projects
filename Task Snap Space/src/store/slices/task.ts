@@ -13,6 +13,47 @@ const initialState: TaskState = {
         {
             id: uuidv4(),
             columnId: 'todo',
+            content:
+                'TaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTaskTask 1',
+        },
+        {
+            id: uuidv4(),
+            columnId: 'todo',
+            content: 'Task 1',
+        },
+        {
+            id: uuidv4(),
+            columnId: 'todo',
+            content: 'Task 1',
+        },
+        {
+            id: uuidv4(),
+            columnId: 'todo',
+            content: 'Task 1',
+        },
+        {
+            id: uuidv4(),
+            columnId: 'todo',
+            content: 'Task 1',
+        },
+        {
+            id: uuidv4(),
+            columnId: 'todo',
+            content: 'Task 1',
+        },
+        {
+            id: uuidv4(),
+            columnId: 'todo',
+            content: 'Task 1',
+        },
+        {
+            id: uuidv4(),
+            columnId: 'todo',
+            content: 'Task 1',
+        },
+        {
+            id: uuidv4(),
+            columnId: 'todo',
             content: 'Task 2',
         },
         {

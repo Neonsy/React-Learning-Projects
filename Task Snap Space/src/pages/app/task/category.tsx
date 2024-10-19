@@ -27,9 +27,9 @@ export default function TaskCategory({ taskList, type }: Props) {
     });
 
     const { heading, bg } = {
-        todo: { heading: 'To Do', bg: 'bg-[#0284C7]' },
-        inProgress: { heading: 'In Progress', bg: 'bg-[#2563EB]' },
-        completed: { heading: 'Completed', bg: 'bg-[#4F46E5]' },
+        todo: { heading: 'To Do', bg: 'bg-todo' },
+        inProgress: { heading: 'In Progress', bg: 'bg-inProgress' },
+        completed: { heading: 'Completed', bg: 'bg-completed' },
     }[type];
 
     if (activeTask && activeTask.columnId !== type) {
@@ -41,13 +41,13 @@ export default function TaskCategory({ taskList, type }: Props) {
                     <FiCheckSquare className='text-2xl' />
                 </div>
 
-                <div ref={setNodeRef} className={`min-h-[120px] ${bg} relative bg-opacity-25 flex flex-col gap-y-2.5 py-3`}>
+                <div ref={setNodeRef} className={`h-[600px] overflow-y-auto ${bg} relative bg-opacity-25 flex flex-col gap-y-2.5 py-3`}>
                     <SortableContext id={type} items={taskIds} strategy={verticalListSortingStrategy}>
                         {taskList.map((task) => (
                             <TaskCard key={task.id} task={task} bg={bg} transparent />
                         ))}
                     </SortableContext>
-                    <p className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl text-slate-950'>Move Task Here</p>
+                    <p className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl text-slate-950 font-bold'>Move Task Here</p>
                 </div>
             </div>
         );
@@ -61,7 +61,7 @@ export default function TaskCategory({ taskList, type }: Props) {
                 <FiCheckSquare className='text-2xl' />
             </div>
 
-            <div ref={setNodeRef} className='min-h-[120px] bg-slate-100 flex flex-col gap-y-2.5 py-3'>
+            <div ref={setNodeRef} className='h-[600px] overflow-y-auto bg-slate-100 flex flex-col gap-y-2.5 py-3'>
                 <SortableContext id={type} items={taskIds} strategy={verticalListSortingStrategy}>
                     {taskList.map((task) => (
                         <TaskCard key={task.id} task={task} bg={bg} />

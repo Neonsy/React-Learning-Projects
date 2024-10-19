@@ -12,6 +12,11 @@ export default {
                 xl: '1280px',
                 '2xl': '1536px',
             },
+            colors: {
+                todo: '#0284C7',
+                inProgress: '#2563EB',
+                completed: '#4F46E5',
+            },
         },
     },
     plugins: [require('@tailwindcss/forms')],
