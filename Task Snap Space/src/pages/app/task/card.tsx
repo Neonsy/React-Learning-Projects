@@ -29,7 +29,7 @@ export default function TaskCard({ task, bg, transparent }: Props) {
             <div
                 ref={setNodeRef}
                 style={style}
-                className={`opacity-75 first:rounded-b-xl rounded-xl w-full min-h-12 max-h-36 ${bg} ring-2 ring-inset ring-slate-950 shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3`}>
+                className={`opacity-75 w-full min-h-12 max-h-36 ${bg} ring-2 ring-inset ring-slate-950 shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3`}>
                 <button className='invisible'>
                     <IoCloseOutline className='w-7 h-7' />
                 </button>
@@ -45,7 +45,7 @@ export default function TaskCard({ task, bg, transparent }: Props) {
         <div
             ref={setNodeRef}
             style={style}
-            className={`${transparent ? 'opacity-25' : ''} w-full min-h-12 max-h-36 first:rounded-b-xl rounded-xl bg-slate-50 shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3`}>
+            className={`${transparent ? 'opacity-25' : ''} w-full min-h-12 max-h-36 bg-slate-50 shadow-lg shadow-black/15 py-2 flex items-center gap-x-2 px-3`}>
             <button>
                 <IoCloseOutline className='w-7 h-7' />
             </button>

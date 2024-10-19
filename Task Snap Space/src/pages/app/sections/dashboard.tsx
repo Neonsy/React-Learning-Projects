@@ -1,6 +1,5 @@
 import {
     DndContext,
-    DragEndEvent,
     DragOverEvent,
     DragOverlay,
     DragStartEvent,
@@ -10,6 +9,7 @@ import {
     useSensor,
     useSensors,
 } from '@dnd-kit/core';
+import { arrayMove } from '@dnd-kit/sortable';
 import { useAtom } from 'jotai';
 import { createPortal } from 'react-dom';
 import { useShallow } from 'zustand/shallow';
@@ -63,7 +63,24 @@ export default function Dashboard() {
     function onDragOver(event: DragOverEvent) {
         const { active, over } = event;
 
-        console.log(active, over);
+        if (!over || active.id === over?.id) {
+            return;
+        }
+
+        // Over is an item
+
+        if (over.data.current?.type === 'task') {
+            const activeIndex = tasks.findIndex((task) => task.id === active.id);
+            const overIndex = tasks.findIndex((task) => task.id === over.id);
+
+            active.data.current!.task.columnId = over.data.current?.task.columnId;
+            useBoundStore.setState({ tasks: arrayMove(tasks, activeIndex, overIndex) });
+        }
+
+        // Over is a category
+        if (over.data.current?.type === 'category') {
+            active.data.current!.task.columnId = over.id;
+        }
     }
 
     function onDragEnd() {
