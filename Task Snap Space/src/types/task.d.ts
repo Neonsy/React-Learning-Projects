@@ -1,8 +1,8 @@
 import { UniqueIdentifier } from '@dnd-kit/core';
-import { ColumnId } from './category';
+import { CategoryId } from './category';
 
 export type Task = {
     id: UniqueIdentifier;
-    columnId: ColumnId;
+    columnId: CategoryId;
     content: string;
 };

@@ -1,5 +1,5 @@
-export type column = {
-    id: ColumnId;
+export type Category = {
+    id: CategoryId;
 };
 
-export type ColumnId = 'todo' | 'inProgress' | 'completed';
+export type CategoryId = 'todo' | 'inProgress' | 'completed';
