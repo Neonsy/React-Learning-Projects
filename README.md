@@ -9,7 +9,11 @@
 
 ## **Overview**
 
-Welcome to the third chapter of my journey into the React ecosystem! 🚀 Click [here](#projects) to jump to the project list.
+Welcome to the third chapter of my journey into the React ecosystem! 🚀 Click [here](#projects) to jump to the project list, where you can also find live demos for the completed projects.
+
+> [!NOTE]
+> The Projects are being designed on the fly, without responsiveness in mind. <br>
+> Therefore, demo results may vary on different devices.
 
 In my [first repository](https://github.com/Neonsy/React-First-Steps), I dove into the basics of React, exploring it's vanilla form.
 Then, in the [second repository](https://github.com/Neonsy/NextJS-Server-Steps), I ventured into the world of Next.js, discovering it's powerful features.
