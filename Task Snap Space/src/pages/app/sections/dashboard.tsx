@@ -1,40 +1,89 @@
+import {
+    DndContext,
+    DragOverEvent,
+    DragOverlay,
+    DragStartEvent,
+    KeyboardSensor,
+    MouseSensor,
+    PointerSensor,
+    useSensor,
+    useSensors,
+} from '@dnd-kit/core';
+import { arrayMove } from '@dnd-kit/sortable';
+import { useAtom } from 'jotai';
+import { createPortal } from 'react-dom';
+import { useShallow } from 'zustand/shallow';
+import { activeTaskAtom } from '../../../atoms/activeTask';
+import { useBoundStore } from '../../../store/store';
+import TaskCard from '../task/card';
 import TaskCategory from '../task/category';
 
-import type { TaskList } from '../../../types/taskList';
-
 export default function Dashboard() {
-    const todoData: TaskList[] = [
-        { id: 1, content: 'Book a trip to Paris' },
-        { id: 2, content: 'Buy a new laptop' },
-        { id: 3, content: 'Find a new job' },
-        { id: 4, content: 'Pay electricity bill' },
-        { id: 5, content: 'Read more books' },
-    ];
+    const { categories, tasks } = useBoundStore(
+        useShallow((state) => ({
+            categories: state.categories,
+            tasks: state.tasks,
+        }))
+    );
 
-    const inProgressData: TaskList[] = [
-        { id: 1, content: 'Plan a party' },
-        { id: 2, content: 'Learn a new language' },
-        { id: 3, content: 'Create a new website' },
-        { id: 4, content: 'Write a novel' },
-        { id: 5, content: 'Train a new dog' },
-    ];
+    const [activeTask, setActiveTask] = useAtom(activeTaskAtom);
 
-    const completedData: TaskList[] = [
-        { id: 1, content: 'Finish the project' },
-        { id: 2, content: 'Get a new phone' },
-        { id: 3, content: 'Find a new flat' },
-        { id: 4, content: 'Buy a new car' },
-        { id: 5, content: 'Get a new job' },
-    ];
+    const sensors = useSensors(
+        useSensor(KeyboardSensor),
+        useSensor(PointerSensor, { activationConstraint: { distance: 0.1 } }),
+        useSensor(MouseSensor)
+    );
 
     return (
         <section className='bg-white px-12 py-6 flex flex-col gap-y-5 rounded-xl shadow-lg shadow-black/25'>
             <h2 className='font-bold'>Your Task Dashboard</h2>
-            <div className='grid grid-cols-3 gap-x-12'>
-                <TaskCategory taskList={todoData} type='to-do' />
-                <TaskCategory taskList={inProgressData} type='in-progress' />
-                <TaskCategory taskList={completedData} type='completed' />
-            </div>
+            <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragOver={onDragOver}>
+                <div className='grid grid-cols-3 gap-x-12'>
+                    {categories.map((category) => (
+                        <TaskCategory key={category.id} type={category.id} taskList={tasks.filter((task) => task.columnId === category.id)} />
+                    ))}
+                </div>
+                {activeTask &&
+                    createPortal(
+                        <DragOverlay>
+                            <TaskCard task={activeTask} />
+                        </DragOverlay>,
+                        document.body
+                    )}
+            </DndContext>
         </section>
     );
+
+    function onDragStart(event: DragStartEvent) {
+        const { active } = event;
+
+        setActiveTask(active.data.current?.task);
+    }
+
+    function onDragOver(event: DragOverEvent) {
+        const { active, over } = event;
+
+        if (!over || active.id === over?.id) {
+            return;
+        }
+
+        // Over is an item
+
+        if (over.data.current?.type === 'task') {
+            const activeIndex = tasks.findIndex((task) => task.id === active.id);
+            const overIndex = tasks.findIndex((task) => task.id === over.id);
+
+            active.data.current!.task.columnId = over.data.current?.task.columnId;
+            useBoundStore.setState({ tasks: arrayMove(tasks, activeIndex, overIndex) });
+        }
+
+        // Over is a category
+        if (over.data.current?.type === 'category') {
+            active.data.current!.task.columnId = over.id;
+        }
+    }
+
+    function onDragEnd() {
+        setActiveTask(null);
+    }
 }

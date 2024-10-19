@@ -1,20 +1,57 @@
+import { useDroppable } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { useMemo } from 'react';
 import { FiCheckSquare } from 'react-icons/fi';
-
+import { CategoryId } from '../../../types/category';
+import type { Task } from '../../../types/task';
 import TaskCard from './card';
-
-import type { TaskList } from '../../../types/taskList';
+import { useAtom } from 'jotai';
+import { activeTaskAtom } from '../../../atoms/activeTask';
 
 type Props = {
-    type: 'to-do' | 'in-progress' | 'completed';
-    taskList: TaskList[];
+    type: CategoryId;
+    taskList: Task[];
 };
 
 export default function TaskCategory({ taskList, type }: Props) {
+    const taskIds = useMemo(() => taskList.map((task) => task.id), [taskList]);
+
+    const [activeTask] = useAtom(activeTaskAtom);
+
+    const { setNodeRef } = useDroppable({
+        id: type,
+        data: {
+            type: 'category',
+            taskList,
+        },
+    });
+
     const { heading, bg } = {
-        'to-do': { heading: 'To Do', bg: 'bg-[#0284C7]' },
-        'in-progress': { heading: 'In Progress', bg: 'bg-[#2563EB]' },
+        todo: { heading: 'To Do', bg: 'bg-[#0284C7]' },
+        inProgress: { heading: 'In Progress', bg: 'bg-[#2563EB]' },
         completed: { heading: 'Completed', bg: 'bg-[#4F46E5]' },
     }[type];
+
+    if (activeTask && activeTask.columnId !== type) {
+        return (
+            <div>
+                <div
+                    className={`flex justify-between items-center ${bg} text-white shadow-xl shadow-black/50 font-bold px-3 py-2 rounded-tl-xl rounded-tr-xl`}>
+                    <h3>{heading}</h3>
+                    <FiCheckSquare className='text-2xl' />
+                </div>
+
+                <div ref={setNodeRef} className={`min-h-[120px] ${bg} relative bg-opacity-25 flex flex-col gap-y-2.5 py-3`}>
+                    <SortableContext id={type} items={taskIds} strategy={verticalListSortingStrategy}>
+                        {taskList.map((task) => (
+                            <TaskCard key={task.id} task={task} bg={bg} transparent />
+                        ))}
+                    </SortableContext>
+                    <p className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl text-slate-950'>Move Task Here</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -24,10 +61,12 @@ export default function TaskCategory({ taskList, type }: Props) {
                 <FiCheckSquare className='text-2xl' />
             </div>
 
-            <div className='bg-slate-100 flex flex-col gap-y-2.5 pb-12'>
-                {taskList.map((task) => (
-                    <TaskCard key={task.id} text={task.content} />
-                ))}
+            <div ref={setNodeRef} className='min-h-[120px] bg-slate-100 flex flex-col gap-y-2.5 py-3'>
+                <SortableContext id={type} items={taskIds} strategy={verticalListSortingStrategy}>
+                    {taskList.map((task) => (
+                        <TaskCard key={task.id} task={task} bg={bg} />
+                    ))}
+                </SortableContext>
             </div>
         </div>
     );
