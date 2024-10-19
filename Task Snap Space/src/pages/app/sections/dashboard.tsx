@@ -15,8 +15,8 @@ import { createPortal } from 'react-dom';
 import { useShallow } from 'zustand/shallow';
 import { activeTaskAtom } from '../../../atoms/activeTask';
 import { useBoundStore } from '../../../store/store';
-import TaskCard from '../task/card';
-import TaskCategory from '../task/category';
+import TaskCard from './taskCard';
+import TaskCategory from './category';
 
 export default function Dashboard() {
     const { categories, tasks } = useBoundStore(
