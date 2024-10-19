@@ -1,11 +1,12 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { produce } from 'immer';
 import { useForm } from 'react-hook-form';
 import { CiCirclePlus } from 'react-icons/ci';
+import { v4 as uuid4 } from 'uuid';
 import { createTaskSchema } from '../../../schemas/createTask';
 import { useBoundStore } from '../../../store/store';
 import { CreateTaskSchema } from '../../../types/schemas/createTask';
-import { v4 as uuid4 } from 'uuid';
 
 export default function Form() {
     const {
@@ -44,10 +45,12 @@ export default function Form() {
     );
 
     function onSubmit(data: CreateTaskSchema) {
-        useBoundStore.setState((state) => {
-            state.tasks.push({ columnId: data.columnId, content: data.content, id: uuid4() });
-        });
-        
+        useBoundStore.setState(
+            produce((state) => {
+                state.tasks.push({ id: uuid4(), ...data });
+            })
+        );
+
         reset();
     }
 }
