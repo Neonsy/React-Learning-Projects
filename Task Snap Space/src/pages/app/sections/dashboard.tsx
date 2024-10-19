@@ -79,7 +79,12 @@ export default function Dashboard() {
 
         // Over is a category
         if (over.data.current?.type === 'category') {
+            const activeIndex = tasks.findIndex((task) => task.id === active.id);
+
             active.data.current!.task.columnId = over.id;
+            useBoundStore.setState({
+                tasks: arrayMove(tasks, activeIndex, useBoundStore.getState().tasks.filter((task) => task.columnId === over.id).length),
+            });
         }
     }
 
