@@ -1,8 +1,9 @@
+import { useDroppable } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { useMemo } from 'react';
 import { FiCheckSquare } from 'react-icons/fi';
-
-import TaskCard from './card';
-
 import type { Task } from '../../../types/task';
+import TaskCard from './card';
 
 type Props = {
     type: 'todo' | 'inProgress' | 'completed';
@@ -10,9 +11,19 @@ type Props = {
 };
 
 export default function TaskCategory({ taskList, type }: Props) {
+    const taskIds = useMemo(() => taskList.map((task) => task.id), [taskList]);
+
+    const { setNodeRef } = useDroppable({
+        id: type,
+        data: {
+            type,
+            taskList,
+        },
+    });
+
     const { heading, bg } = {
-        'todo': { heading: 'To Do', bg: 'bg-[#0284C7]' },
-        'inProgress': { heading: 'In Progress', bg: 'bg-[#2563EB]' },
+        todo: { heading: 'To Do', bg: 'bg-[#0284C7]' },
+        inProgress: { heading: 'In Progress', bg: 'bg-[#2563EB]' },
         completed: { heading: 'Completed', bg: 'bg-[#4F46E5]' },
     }[type];
 
@@ -24,10 +35,12 @@ export default function TaskCategory({ taskList, type }: Props) {
                 <FiCheckSquare className='text-2xl' />
             </div>
 
-            <div className='bg-slate-100 flex flex-col gap-y-2.5 pb-12'>
-                {taskList.map((task) => (
-                    <TaskCard key={task.id} task={task} />
-                ))}
+            <div ref={setNodeRef} className='bg-slate-100 flex flex-col gap-y-2.5 pb-12'>
+                <SortableContext items={taskIds} strategy={verticalListSortingStrategy}>
+                    {taskList.map((task) => (
+                        <TaskCard key={task.id} task={task} />
+                    ))}
+                </SortableContext>
             </div>
         </div>
     );
