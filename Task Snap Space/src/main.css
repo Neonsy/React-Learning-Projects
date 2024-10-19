@@ -35,10 +35,21 @@ div#app-grid {
     @apply min-h-dvh;
 }
 
-/* body {
+body {
     --sb-track-color: #d9e6ec;
-    --sb-thumb-color: #006f9c;
     --sb-size: 12px;
+}
+
+div#todo {
+    --sb-thumb-color: #0284c7;
+}
+
+div#inProgress {
+    --sb-thumb-color: #2563eb;
+}
+
+div#completed {
+    --sb-thumb-color: #4f46e5;
 }
 
 *::-webkit-scrollbar {
@@ -47,12 +58,12 @@ div#app-grid {
 
 *::-webkit-scrollbar-track {
     background: var(--sb-track-color);
-    border-radius: 0px0px 9px 0px;
+    border-radius: 0px 0px 0px 0px;
 }
 
 *::-webkit-scrollbar-thumb {
     background: var(--sb-thumb-color);
-    border-radius: 0px 0px 18px 0px;
+    border-radius: 0px 0px 0px 0px;
     border: 3px solid #d9e6ec;
 }
 
@@ -60,4 +71,4 @@ div#app-grid {
     body {
         scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
     }
-} */
+}

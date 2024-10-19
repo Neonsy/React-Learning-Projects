@@ -41,7 +41,7 @@ export default function TaskCategory({ taskList, type }: Props) {
                     <FiCheckSquare className='text-2xl' />
                 </div>
 
-                <div ref={setNodeRef} className={`h-[600px] overflow-y-auto ${bg} relative bg-opacity-25 flex flex-col gap-y-2.5 py-3`}>
+                <div id={type} ref={setNodeRef} className={`h-[600px] overflow-y-auto ${bg} relative bg-opacity-25 flex flex-col gap-y-2.5 py-3`}>
                     <SortableContext id={type} items={taskIds} strategy={verticalListSortingStrategy}>
                         {taskList.map((task) => (
                             <TaskCard key={task.id} task={task} bg={bg} transparent />
@@ -61,7 +61,7 @@ export default function TaskCategory({ taskList, type }: Props) {
                 <FiCheckSquare className='text-2xl' />
             </div>
 
-            <div ref={setNodeRef} className='h-[600px] overflow-y-auto bg-slate-100 flex flex-col gap-y-2.5 py-3'>
+            <div id={type} ref={setNodeRef} className='h-[600px] overflow-y-auto bg-slate-100 flex flex-col gap-y-2.5 py-3'>
                 <SortableContext id={type} items={taskIds} strategy={verticalListSortingStrategy}>
                     {taskList.map((task) => (
                         <TaskCard key={task.id} task={task} bg={bg} />
