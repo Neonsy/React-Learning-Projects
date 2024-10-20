@@ -41,11 +41,10 @@ Key highlights include:
 -   **Component Architecture**: Ongoing consideration of optimal component organization, balancing between colocated and shared components.
 -   **Future Focus**: Recognizing the need for responsive design skills, with plans to tackle this in future projects.
 
-## [Live Demo](https://stackblitz.com/edit/task-snap-space?embed=1&file=README.md&hideExplorer=1&hideNavigation=1&theme=dark&view=preview&terminal=dev)
+## [Live Demo](https://stackblitz.com/edit/task-snap-space?embed=1&file=README.md&hideExplorer=1&hideNavigation=1&theme=dark&view=preview&terminal=build,preview)
 
 > [!WARNING]
-> The container will take a moment to load. <br>
-> After that, you'll have to wait for the app to fully load at the white-screen of doom.
+> The container will take a moment to load. Please be patient.
 
 ### Images
 
