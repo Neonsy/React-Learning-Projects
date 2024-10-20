@@ -65,7 +65,7 @@ export default function TaskCategory({ taskList, type }: Props) {
             <div
                 id={type}
                 ref={setNodeRef}
-                className='snap-y h-[600px] shadow-lg shadow-black/25 overflow-y-auto gutter-stable pl-1.5 bg-slate-100 flex flex-col gap-y-2.5 py-3'>
+                className='h-[600px] shadow-lg shadow-black/25 overflow-y-auto gutter-stable pl-1.5 bg-slate-100 flex flex-col gap-y-2.5 py-3'>
                 <SortableContext id={type} items={taskIds} strategy={verticalListSortingStrategy}>
                     {taskList.map((task) => (
                         <TaskCard key={task.id} task={task} bg={bg} />

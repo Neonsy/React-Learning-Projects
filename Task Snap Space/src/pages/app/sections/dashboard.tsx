@@ -7,7 +7,7 @@ import {
     MouseSensor,
     PointerSensor,
     useSensor,
-    useSensors
+    useSensors,
 } from '@dnd-kit/core';
 import { produce } from 'immer';
 import { useAtom } from 'jotai';
