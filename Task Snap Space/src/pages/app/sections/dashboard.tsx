@@ -9,14 +9,16 @@ import {
     useSensor,
     useSensors,
 } from '@dnd-kit/core';
-import { arrayMove } from '@dnd-kit/sortable';
+import { produce } from 'immer';
 import { useAtom } from 'jotai';
 import { createPortal } from 'react-dom';
 import { useShallow } from 'zustand/shallow';
-import { activeTaskAtom } from '../../../atoms/activeTask';
+import { activeTaskCardAtom } from '../../../atoms/activeTask';
 import { useBoundStore } from '../../../store/store';
-import TaskCard from '../task/card';
-import TaskCategory from '../task/category';
+import { CategoryId } from '../../../types/category';
+import { Task } from '../../../types/task';
+import TaskCategory from './category';
+import TaskCard from './taskCard';
 
 export default function Dashboard() {
     const { categories, tasks } = useBoundStore(
@@ -26,7 +28,7 @@ export default function Dashboard() {
         }))
     );
 
-    const [activeTask, setActiveTask] = useAtom(activeTaskAtom);
+    const [activeTaskCard, setActiveTaskCard] = useAtom(activeTaskCardAtom);
 
     const sensors = useSensors(
         useSensor(KeyboardSensor),
@@ -43,10 +45,10 @@ export default function Dashboard() {
                         <TaskCategory key={category.id} type={category.id} taskList={tasks.filter((task) => task.columnId === category.id)} />
                     ))}
                 </div>
-                {activeTask &&
+                {activeTaskCard &&
                     createPortal(
                         <DragOverlay>
-                            <TaskCard task={activeTask} />
+                            <TaskCard task={activeTaskCard} />
                         </DragOverlay>,
                         document.body
                     )}
@@ -57,7 +59,7 @@ export default function Dashboard() {
     function onDragStart(event: DragStartEvent) {
         const { active } = event;
 
-        setActiveTask(active.data.current?.task);
+        setActiveTaskCard(active.data.current?.task);
     }
 
     function onDragOver(event: DragOverEvent) {
@@ -67,23 +69,37 @@ export default function Dashboard() {
             return;
         }
 
-        // Over is an item
+        useBoundStore.setState(
+            produce((state) => {
+                const tasks = state.tasks;
+                const activeIndex = tasks.findIndex((task: Task) => task.id === active.id);
+                const activeTask = tasks[activeIndex];
 
-        if (over.data.current?.type === 'task') {
-            const activeIndex = tasks.findIndex((task) => task.id === active.id);
-            const overIndex = tasks.findIndex((task) => task.id === over.id);
+                // Over is an item
+                if (over.data.current?.type === 'task') {
+                    const overIndex = tasks.findIndex((task: Task) => task.id === over.id);
+                    const overTask = tasks[overIndex];
 
-            active.data.current!.task.columnId = over.data.current?.task.columnId;
-            useBoundStore.setState({ tasks: arrayMove(tasks, activeIndex, overIndex) });
-        }
+                    activeTask.columnId = overTask.columnId;
 
-        // Over is a category
-        if (over.data.current?.type === 'category') {
-            active.data.current!.task.columnId = over.id;
-        }
+                    tasks.splice(activeIndex, 1);
+                    tasks.splice(overIndex, 0, activeTask);
+                }
+
+                // Over is a category
+                if (over.data.current?.type === 'category') {
+                    activeTask.columnId = over.id as CategoryId;
+
+                    const newIndex = tasks.filter((task: Task) => task.columnId === over.id).length;
+
+                    tasks.splice(activeIndex, 1);
+                    tasks.splice(newIndex, 0, activeTask);
+                }
+            })
+        );
     }
 
     function onDragEnd() {
-        setActiveTask(null);
+        setActiveTaskCard(null);
     }
 }
