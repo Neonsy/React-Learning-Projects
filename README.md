@@ -52,4 +52,4 @@ To simulate remote data interactions, I'll likely use JSON-Server and leverage [
 ## **Projects**
 
 - [ShopCompare](https://github.com/Neonsy/React-Learning-State-Management/blob/Shop-Compare/Shop%20Compare/README.md)
-- [TaskSnapSpace | **W.I.P**](https://github.com/Neonsy/React-Learning-State-Management/blob/Task-Snap-Space/Task%20Snap%20Space/README.md)
+- [TaskSnapSpace](https://github.com/Neonsy/React-Learning-State-Management/blob/Task-Snap-Space/Task%20Snap%20Space/README.md)
