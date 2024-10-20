@@ -61,7 +61,7 @@ There are three state management options I have in this project and this is how 
 > [!NOTE]
 > Folloing my own rules: Instead of the shop details popup info being stored in the boundStore, I could've used an atom of an object instead, because I don't need special functionality for the popup.
 
-## [Live Demo](https://stackblitz.com/edit/shop-compare?embed=1&file=README.md&hideExplorer=1&hideNavigation=1&view=editor&terminal=dev&terminal=stackdb)
+## [Live Demo](https://stackblitz.com/edit/shop-compare?embed=1&file=README.md&hideExplorer=1&hideNavigation=1&view=editor&terminal=build,serve&terminal=stackdb)
 
 > [!WARNING]
 > In order to be able to use this demo, you need to follow the steps in the README.md file, which you'll see once you've clicked on the demo link.
