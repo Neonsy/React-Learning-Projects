@@ -1,4 +1,4 @@
 import { atom } from 'jotai';
 import { Task } from '../types/task';
 
-export const activeTaskAtom = atom<Task | null>(null);
+export const activeTaskCardAtom = atom<Task | null>(null);

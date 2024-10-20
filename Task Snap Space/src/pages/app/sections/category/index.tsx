@@ -1,8 +1,6 @@
 import { useDroppable } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { useAtom } from 'jotai';
 import { useMemo } from 'react';
-import { activeTaskAtom } from '../../../../atoms/activeTask';
 import { CategoryId } from '../../../../types/category';
 import type { Task } from '../../../../types/task';
 import TaskCard from '../taskCard';
@@ -16,9 +14,7 @@ type Props = {
 export default function TaskCategory({ taskList, type }: Props) {
     const taskIds = useMemo(() => taskList.map((task) => task.id), [taskList]);
 
-    const [activeTask] = useAtom(activeTaskAtom);
-
-    const { setNodeRef } = useDroppable({
+    const { setNodeRef, active } = useDroppable({
         id: type,
         data: {
             type: 'category',
@@ -32,7 +28,7 @@ export default function TaskCategory({ taskList, type }: Props) {
         completed: { heading: 'Completed', bg: 'bg-completed' },
     }[type];
 
-    if (activeTask && activeTask.columnId !== type) {
+    if (active !== null && active?.data.current?.task.columnId !== type) {
         return (
             <div className='relative'>
                 <div
@@ -66,7 +62,10 @@ export default function TaskCategory({ taskList, type }: Props) {
                 <Icon category={type} className='text-xl' />
             </div>
 
-            <div id={type} ref={setNodeRef} className='snap-y h-[600px] shadow-lg shadow-black/25 overflow-y-auto gutter-stable pl-1.5 bg-slate-100 flex flex-col gap-y-2.5 py-3'>
+            <div
+                id={type}
+                ref={setNodeRef}
+                className='snap-y h-[600px] shadow-lg shadow-black/25 overflow-y-auto gutter-stable pl-1.5 bg-slate-100 flex flex-col gap-y-2.5 py-3'>
                 <SortableContext id={type} items={taskIds} strategy={verticalListSortingStrategy}>
                     {taskList.map((task) => (
                         <TaskCard key={task.id} task={task} bg={bg} />

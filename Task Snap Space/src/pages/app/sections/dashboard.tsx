@@ -7,13 +7,13 @@ import {
     MouseSensor,
     PointerSensor,
     useSensor,
-    useSensors,
+    useSensors
 } from '@dnd-kit/core';
 import { produce } from 'immer';
 import { useAtom } from 'jotai';
 import { createPortal } from 'react-dom';
 import { useShallow } from 'zustand/shallow';
-import { activeTaskAtom } from '../../../atoms/activeTask';
+import { activeTaskCardAtom } from '../../../atoms/activeTask';
 import { useBoundStore } from '../../../store/store';
 import { CategoryId } from '../../../types/category';
 import { Task } from '../../../types/task';
@@ -28,7 +28,7 @@ export default function Dashboard() {
         }))
     );
 
-    const [activeTask, setActiveTask] = useAtom(activeTaskAtom);
+    const [activeTaskCard, setActiveTaskCard] = useAtom(activeTaskCardAtom);
 
     const sensors = useSensors(
         useSensor(KeyboardSensor),
@@ -45,10 +45,10 @@ export default function Dashboard() {
                         <TaskCategory key={category.id} type={category.id} taskList={tasks.filter((task) => task.columnId === category.id)} />
                     ))}
                 </div>
-                {activeTask &&
+                {activeTaskCard &&
                     createPortal(
                         <DragOverlay>
-                            <TaskCard task={activeTask} />
+                            <TaskCard task={activeTaskCard} />
                         </DragOverlay>,
                         document.body
                     )}
@@ -59,7 +59,7 @@ export default function Dashboard() {
     function onDragStart(event: DragStartEvent) {
         const { active } = event;
 
-        setActiveTask(active.data.current?.task);
+        setActiveTaskCard(active.data.current?.task);
     }
 
     function onDragOver(event: DragOverEvent) {
@@ -81,6 +81,7 @@ export default function Dashboard() {
                     const overTask = tasks[overIndex];
 
                     activeTask.columnId = overTask.columnId;
+
                     tasks.splice(activeIndex, 1);
                     tasks.splice(overIndex, 0, activeTask);
                 }
@@ -88,8 +89,10 @@ export default function Dashboard() {
                 // Over is a category
                 if (over.data.current?.type === 'category') {
                     activeTask.columnId = over.id as CategoryId;
-                    tasks.splice(activeIndex, 1);
+
                     const newIndex = tasks.filter((task: Task) => task.columnId === over.id).length;
+
+                    tasks.splice(activeIndex, 1);
                     tasks.splice(newIndex, 0, activeTask);
                 }
             })
@@ -97,6 +100,6 @@ export default function Dashboard() {
     }
 
     function onDragEnd() {
-        setActiveTask(null);
+        setActiveTaskCard(null);
     }
 }
