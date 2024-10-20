@@ -19,5 +19,14 @@ export default {
             },
         },
     },
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        function ({ addUtilities }) {
+            addUtilities({
+                '.gutter-stable': {
+                    'scrollbar-gutter': 'stable',
+                },
+            });
+        },
+    ],
 };

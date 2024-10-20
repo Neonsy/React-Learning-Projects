@@ -34,7 +34,7 @@ export default function TaskCategory({ taskList, type }: Props) {
 
     if (activeTask && activeTask.columnId !== type) {
         return (
-            <div>
+            <div className='relative'>
                 <div
                     className={`flex justify-between items-center ${bg} text-white shadow-xl shadow-black/10 font-bold px-3 py-2 rounded-tl-xl rounded-tr-xl`}>
                     <h3>{heading}</h3>
@@ -44,7 +44,7 @@ export default function TaskCategory({ taskList, type }: Props) {
                 <div
                     id={type}
                     ref={setNodeRef}
-                    className={`h-[600px] shadow-lg shadow-black/25 overflow-y-auto ${bg} relative bg-opacity-25 flex flex-col gap-y-2.5 py-3`}>
+                    className={`h-[600px] shadow-lg shadow-black/25 overflow-y-auto gutter-stable pl-1.5 ${bg} bg-opacity-25 flex flex-col gap-y-2.5 py-3`}>
                     <SortableContext id={type} items={taskIds} strategy={verticalListSortingStrategy}>
                         {taskList.map((task) => (
                             <TaskCard key={task.id} task={task} bg={bg} transparent />
@@ -66,7 +66,7 @@ export default function TaskCategory({ taskList, type }: Props) {
                 <Icon category={type} className='text-xl' />
             </div>
 
-            <div id={type} ref={setNodeRef} className='h-[600px] shadow-lg shadow-black/25 overflow-y-auto bg-slate-100 flex flex-col gap-y-2.5 py-3'>
+            <div id={type} ref={setNodeRef} className='snap-y h-[600px] shadow-lg shadow-black/25 overflow-y-auto gutter-stable pl-1.5 bg-slate-100 flex flex-col gap-y-2.5 py-3'>
                 <SortableContext id={type} items={taskIds} strategy={verticalListSortingStrategy}>
                     {taskList.map((task) => (
                         <TaskCard key={task.id} task={task} bg={bg} />

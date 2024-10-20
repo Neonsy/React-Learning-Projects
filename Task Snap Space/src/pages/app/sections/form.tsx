@@ -16,6 +16,7 @@ export default function Form() {
         reset,
     } = useForm<CreateTaskSchema>({
         resolver: zodResolver(createTaskSchema),
+        mode: 'onChange',
     });
 
     return (
